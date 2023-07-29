@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <title>Narrative Visualization</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link href="style.css" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </head>
+<!-- load all country names and then draw World data first -->
+<body>
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        The data for the country you chose doesn't exist.
+    </div>
+   
+   <style>
+        /* Custom styles for the annotation */
+        #step1 .annotation {
+        position: absolute;
+        left: 800px;
+        bottom: 180px;
+        max-width: 250px;
+        background-color: rgb(249, 249, 249);
+        border: 0px solid #ccc;
+        padding: 8px;
+        color: orange;
+        font-weight: bold;
+        text-align: left;
+        z-index: 1;
+        }
+        /* Custom styles for the arrow line */
+        #step1 .arrow-line {
+        position: absolute;
+        left: 805px;
+        bottom: 90px;
+        width: 0;
+        height: 100px;
+        border-left: 2px solid orange;
+        z-index: 1;
+        }
+
+        /* Custom styles for the bend */
+        #step1 .arrow-line::before {
+        content: "";
+        position: absolute;
+        left: 780px;
+        bottom: 50px;
+        width: 20px;
+        height: 20px;
+        border-left: 3px solid orange;
+        border-bottom: 3px solid orange;
+        transform: rotate(-45deg);
+        z-index: 1;
+        }
+    </style>
+    <!-- Menu section -->
+    <div id="step1" class="container-fluid" style="height:300px">
+        <div>
+            <p>
+                <h1>1.Wage and Salary Employment Percentage : Worldwide</h1>
+                This scene shows the trend of worldwide average wage and salaried workers, % of total employment from 2000 to 2020.<br/>
+                In the plot, it is evident that the proportion of wage and salary workers globally has been on the rise over the past 18 years, indicating a concurrent decline in the percentage of self-employed/unemployed workers.<br/>
+                The data also indicates a slight decrease in the Wage and Salary Employment Percentage from 2019 to 2020. This decline is attributed to the impact of the pandemic, which led to job losses worldwide, resulting in a lower percentage of wage and salary employment during that period. <br/>
+                In 2013, the Worldwide Wage and Salary Employment Percentage crossed a significant milestone by surpassing the 50% mark, making it another crucial benchmark for global employment trends.<br/>
+                <i>Data Source : WDI(World Bank) through APIs.</i><br/>
+            </p>
+            <!-- Add the annotation below this line -->
+            <div class="annotation">
+                <span style="color: orange;"></span> Worldwide % of Employment reached at 50% in 2013.
+            </div>
+            <div class="arrow-line"></div>
+            <!-- End of annotation -->
+            <p><div id="to_step2"><a href="#">View next >>></a></div></p>
+        </div>
+    </div>
+
+    <div id="step2" class="container-fluid" style="display:none;height:300px">
+        <div>
+            <p>
+                <h1>2.Wage and Salary Employment Percentage : United States</h1>
+                From 2000 to 2020, the US experienced a significant rise in the proportion of average wage and salaried workers in its workforce compared to the global average.<br/>
+                Moreover, the percentages of wage and salaried workers among the total, male, and female employees in the US all surpassed 90% during this period.<br/>
+            </p>
+            <!-- <p><div id="to_step3"><a href="#">View next >>></a></div></p> -->
+            <p><div id="back_to_step1"><a href="#">View previous &lt;&lt;&lt;</a></div></p>
+            <p></p><div id="to_step3"><a href="#">View next &gt;&gt;&gt;</a></div></p>
+        </div>
+    </div>
+
+    <div id="step3" class="container-fluid" style="display:none;height:300px">
+        <div>
+            <p>
+                <h1>3.Wage and Salary Employment Percentage : China</h1>
+                The line chart displays the percentage of average wage and salaried workers in China's total employment from 2000 to 2020. <br/>
+                Over this period, the rate exhibited a continuous upward trend. However, it has hovered around the global average and has not surpassed the 60% mark. <br/><br/>
+                The data from the WDI indicator highlights that there is considerable scope for China to enhance this aspect of its workforce.
+            </p>
+            <!-- <p><div id="to_step4"><a href="#">View next >>></a></div></p> -->
+            <p><div id="back_to_step2"><a href="#">View previous &lt;&lt;&lt;</a></div></p>
+            <p></p><div id="to_step4"><a href="#">View next &gt;&gt;&gt;</a></div></p>
+        </div>
+    </div>
+
+    <div id="step4" class="container-fluid" style="display:none;height:300px">
+        <div>
+            <p>
+                <h1>4.Wage and Salary Employment Percentage : Russia</h1>
+                The comparison between China, Russia, and the United States regarding the trend of average wage and salaried workers as a percentage of total employment from 2000 to 2020 reveals unexpected findings.<br/>
+                Contrary to the assumption that China, like Russia, might have a similar situation due to both being ruled by communist parties, the data indicates otherwise.<br/>
+                Russia's employment structure, as reflected in the chart, appears to be more comparable to that of the United States.<br/>
+                
+            </p>
+            <!-- <p><div id="to_step5"><a href="#">View next >>></a></div></p> -->
+            <p><div id="back_to_step3"><a href="#">View previous &lt;&lt;&lt;</a></div></p>
+            <p></p><div id="to_step5"><a href="#">View next &gt;&gt;&gt;</a></div></p>
+        </div>
+    </div>
+
+    <div id="step5" class="container-fluid" style="display:none;height:300px">
+        <div>
+            <p>
+                <h1>5.WDI Dataset Exploration</h1>
+                You now have the opportunity to delve into the WDI dataset and access valuable information. There are two options available for your query:
+                <li><b>Gender Selection:</b> You can choose to query data for "Male only," "Female only," or the "Total" gender category.</li>
+                <li><b>Country Selection:</b> Utilize the select box below to pick the country of interest for your query. Each time you choose a new country or gender type, a new line chart will be displayed, overlapping with the existing chart.</li>
+                <br/>
+                Feel free to explore the dataset and analyze the trends in wage and salaried workers for different genders and countries.  Happy querying!
+            </p>
+            <!-- <p><div id="startover"><a href="#"> Start over </a></div></p> -->
+            <!--<p><div id="back_to_step4"><a href="#">View previous &lt;&lt;&lt;</a></div></p> -->
+            <p></p><div id="startover"><a href="#">Start Over  &gt;&gt;&gt;</a></div></p>
+        </div>
+        <div>
+            <!-- WDI Dataset Exploration -->
+            Total <input type="radio" name="type" value="0" checked/>
+            Male <input type="radio" name="type" value="1"/>
+            Female <input type="radio"name="type" value="2"/>
+        </div>            
+        <div id="country_select_container">
+
+        </div>
+    </div>
+    
+    <div class="content">
+        <svg id="chart"></svg>
+    </div>
+    
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+    <script src="load.js" charset="utf-8"></script>
+    <script>
+        draw('WLD', false, 0);
+        draw('WLD', false, 1);
+        draw('WLD', false, 2);
+    </script>
+
+<div class="container-fluid" style="height:50px">
+    <strong style="color:orange">Orange</strong> line is for total average, <strong style="color:blue">blue</strong> is for male, and <strong style="color:red">red</strong> is for female. <br/>
+</div>
+
+<div class="container-fluid">
+    <h4>About the indicator in WDI:</h4>
+    <blockquote>
+            The indicator of status in employment distinguishes between two categories of the total employed. These are: (a) wage and salaried workers (also known as employees); and (b) self-employed workers. Self-employed group is broken down in the subcategories: self-employed workers with employees (employers), self-employed workers without employees (own-account workers), members of producers' cooperatives and contributing family workers (also known as unpaid family workers). Vulnerable employment refers to the sum of contributing family workers and own-account workers. The series is part of the ILO estimates and is harmonized to ensure comparability across countries and over time by accounting for differences in data source, scope of coverage, methodology, and other country-specific factors. The estimates are based mainly on nationally representative labor force surveys, with other sources (population censuses and nationally reported estimates) used only when no survey data are available.
+    </blockquote>
+</div>
+
+</body>
+
+</html>
