@@ -3,8 +3,8 @@ Akriti Sinha ( akritis5@illinois.edu ) - University of Illinois at Urbana-Champa
 
 
 ```
-Github Page for demo: 
-Git Repo: 
+Github Page for demo: https://akritisinha08.github.io/index.html#
+Git Repo: https://github.com/akritisinha08/akritisinha08.github.io
 ```
 
 
