@@ -130,12 +130,3 @@ The essay should contain the following sections.
 
 >3) country select list: Depends on which country viewer choose in scene 5, it also impacts the behavior of WDI API call, and D3 code either calls world data or each country's data.
 
-# Why my visualization is different than others?
-
-My visualization is based on realtime WorldBank API calling and parse the JSON result. This behavior caused lots of data parsing and data sync issue but also taught me a lot more than I learned from the classes. e.g., how to pass extra function parameter to the callback function which usually takes only `d` or `d`,`i`. 
-Also, the visualization page will work well with updated data on WDI Worldbank data change as my code don't use locally loaded CSV.
-
-# Future work
-
-* There is still some display issue on the last page during overlapping the line chart. 
-* Also, internal chart drawing functions are flexible enough to take a query period(year) as a parameter, but I didn't have enough time to add it as query parameter, so the date is hardcoded from 2000 to 2017. It would be better with some range/scroller to allow viewers to control of it.
